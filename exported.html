@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una carta para ti</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #fbebee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Georgia', serif;
+      overflow-x: hidden;
+    }
+
+    /* Contenedor del sobre */
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      background-color: #d9534f;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      cursor: pointer;
+      margin-top: 100px;
+    }
+
+    /* Solapa superior del sobre */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 120px solid #c9302c;
+      transform-origin: top;
+      transition: transform 0.6s ease-in-out, z-index 0.6s;
+      z-index: 3;
+    }
+
+    /* Lados del sobre */
+    .envelope-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid #e65c58;
+      border-top: 110px solid transparent;
+      border-bottom: 110px solid #e65c58;
+      border-radius: 0 0 0 12px;
+      z-index: 2;
+    }
+
+    .envelope-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-right: 160px solid #e65c58;
+      border-top: 110px solid transparent;
+      border-bottom: 110px solid #e65c58;
+      border-radius: 0 0 12px 0;
+      z-index: 2;
+    }
+
+    /* Sello de corazón */
+    .heart-seal {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #d9534f;
+      font-size: 22px;
+      z-index: 4;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: opacity 0.4s ease;
+    }
+
+    /* Carta dentro del sobre */
+    .letter {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 290px;
+      height: 190px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.8s ease-in-out, height 0.8s ease-in-out;
+      z-index: 1;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    /* Contenido de la carta */
+    .letter h2 {
+      font-size: 1.2rem;
+      color: #d9534f;
+      margin-bottom: 15px;
+    }
+
+    .letter p {
+      font-size: 0.95rem;
+      color: #444444;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      text-align: left;
+      white-space: pre-line;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      color: #777777;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    /* Animación al abrir */
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+
+    .envelope-wrapper.open .heart-seal {
+      opacity: 0;
+    }
+
+    .envelope-wrapper.open .letter {
+      transform: translate(-50%, -130px);
+      height: 380px;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="envelope-wrapper" id="envelope">
+    <div class="envelope-flap"></div>
+    <div class="heart-seal">♥</div>
+    
+    <div class="letter">
+      <h2>Para ti</h2>
+      
+      <p>Muy buena tarde Señorita Kimberlin
+
+Solo pasaba a recordarle que es una persona increible aunque usted no lo admita, a decirle tambien lo bien que se siente al estar frente a usted, con solo su presensia hace sontir que fuera de usted no hay nada que se parezca ni asemeje a su hermosura, espero goze de felicidaden todos los dias de su vida,se le extraña demasiado, y recuerda siempre que eres asombrosa y unica, nunca cambies!! Y por sierto Me volvio loco tu forma de ser!!TQM</p>
+      
+      <div class="signature">
+        Con aprecio,<br>
+        [MOLY Ac]
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
